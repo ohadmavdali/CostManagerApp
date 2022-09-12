@@ -1,9 +1,11 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose')
 
 const costModel = mongoose.Schema(
     {
-        description: {type: String, required: true},
-        category: {type: String, required: true},
+        userId: {type: ObjectId},
+        description: {type: String}, // required: true},
+        category: {type: String}, //required: true},
         sum: { type: Number, trim: true},
         creationDate : {
             type:Date,

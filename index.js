@@ -4,6 +4,7 @@ const connectDB = require("./server/config/db");
 const Cost = require('./server/models/costModel');
 const User = require('./server/models/userModel');
 const asyncHandler = require("express-async-handler");
+const { ObjectId } = require('mongodb');
 // const generateToken = require("./server/config/generateToken");
 
 
@@ -119,13 +120,29 @@ app.get('/costs', async (req,res) => {
     }
 });
 
+// Get all costs for a specific user
+app.get('/costs/:id', async (req,res) => {
+    try {
+        const PireId = req.params.id
+        // const user = await User.findById({_id: userId });
+        const costs = await Cost.find( {userId: PireId})
+        // .populate("first_name","name")
+        // .populate("first_name","name")
+        res.send(costs);
+    } catch(err){
+        console.log(err)
+        res.sendStatus(500)
+    
+    }
+});
 
 // add cost
 app.post('/costs/:id', async (req,res) => {
     try {
-        const newCost = new Cost(req.body)
-        await Cost.save()
-        res.send({msg:"new expenses created"});
+        const userId = req.params.id
+        const merged = {"userId": userId} + req.body 
+        const newCost = await Cost.create(merged)
+        res.send({msg:"new cost was created"});
 
     } catch(err){
         console.log(err)
@@ -145,15 +162,6 @@ app.delete('/:id', async(req,res) => {
     }
 });
 
-// 
-app.get('/asd', async (req,res) => {
-    try {
-        res.send("APIasdasd ..xxxx.");
-    } catch(err){
-        console.log(err)
-        res.sendStatus(500)
-    }
-});
 
 const port = process.env.PORT || 10001;
 app.listen(port, () => {
