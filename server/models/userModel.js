@@ -1,10 +1,12 @@
+const { Double } = require('mongodb');
 const mongoose = require('mongoose');
 
 
 const userSchema = mongoose.Schema(
     {
-    first_name: {type: String},
-    last_name: {type: String},
+        id: {type: Double},
+        first_name: {type: String},
+        last_name: {type: String},
     }
 );
 

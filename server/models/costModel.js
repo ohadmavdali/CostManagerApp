@@ -5,6 +5,7 @@ const costModel = mongoose.Schema(
         description: {type: String, required: true},
         category: {type: String, required: true},
         sum: { type: Number, trim: true},
+        userId: {type: Double},
         creationDate : {
             type:Date,
             default:Date.now
