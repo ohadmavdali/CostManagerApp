@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema(
     {
-        id: {type: Double},
-        first_name: {type: String},
-        last_name: {type: String},
+        id: { type: Number },
+        first_name: { type: String },
+        last_name: { type: String },
     }
 );
 
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("users", userSchema);
 
 module.exports = User;
