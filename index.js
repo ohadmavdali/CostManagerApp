@@ -143,13 +143,12 @@ app.post('/new-cost', async (req, res) => {
     }
 });
 
-
 // Delete user
-app.delete('/:id', async (req, res) => {
+app.delete('/delete-user/:id', async (req, res) => {
     try {
         const userId = req.params.id;
         console.log('Deleting user: ' + userId)
-        const result = await User.deleteOne({ id: userId });
+        const result = await User.deleteOne({ _id: userId });
         res.send(result);
     } catch (err) {
         console.log(err);
@@ -157,8 +156,9 @@ app.delete('/:id', async (req, res) => {
     }
 });
 
+
 // Delete cost
-app.delete('/:id', async (req, res) => {
+app.delete('/delete-cost/:id', async (req, res) => {
     try {
         const costId = req.params.id;
         console.log('Deleting cost: ' + costId)
