@@ -3,8 +3,6 @@ const dotenv = require("dotenv");
 const connectDB = require("./server/config/db");
 const Cost = require('./server/models/costModel');
 const User = require('./server/models/userModel');
-const asyncHandler = require("express-async-handler");
-const { updateOne } = require('./server/models/costModel');
 
 
 dotenv.config();
@@ -23,73 +21,6 @@ app.get('/', async (req, res) => {
         res.sendStatus(500);
     }
 });
-
-
-// // Register new user
-// app.post('/register', asyncHandler(async (req, res) => {
-//     try {
-//         const { name, password } = req.body;
-
-//         if (!name || !password) {
-//             res.status(400);
-//             throw new Error("Please Enter all the Fields");
-//         }
-
-//         const userExists = await User.findOne({ name });
-
-//         if (userExists) {
-//             res.status(400);
-//             throw new Error("User already exists");
-//         }
-
-//         const user = await User.create({
-//             id,
-//             first_name,
-//             last_name,
-//         });
-
-//         if (user) {
-//             res.status(201).json({
-//                 _id: user._id,
-//                 first_name: user.first_name,
-//                 last_name: user.last_name
-//                 //token: generateToken(user._id),
-//             });
-//         } else {
-//             res.status(400);
-//             throw new Error("User not found");
-//         }
-
-//     } catch (err) {
-//         console.log(err)
-//         res.sendStatus(500)
-//     }
-// }));
-
-// // Auth user (Login)
-// app.post('/login', async (req, res) => {
-//     try {
-//         const { name, password } = req.body;
-//         const user = await User.findOne({ name });
-
-//         if (user && (await user.matchPassword(password))) {
-//             userToken = generateToken(user._id);
-//             res.json({
-//                 _id: user._id,
-//                 name: user.name,
-//                 token: userToken,
-//             });
-
-//         } else {
-//             res.status(401);
-//             throw new Error("Invalid name or Password");
-//         }
-
-//     } catch (err) {
-//         console.log(err);
-//         res.sendStatus(500);
-//     }
-// });
 
 //Get all users 
 app.get('/users', async (req, res) => {

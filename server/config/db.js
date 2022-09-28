@@ -19,31 +19,6 @@ const connectDB = async () => {
     }
 };
 
-// init data-base 
-// const initUsersAndCosts = async () => {
-//     console.log("starting initiating")
-//     // const ids = []
-//     for (let i = 1; i < 6; i++) {
-//         const user = new User({
-//             id: '9' + i + '5' + i + '7',
-//             first_name: "User" + i,
-//             last_name: "Last" + i
-//         })
-//         const savedUser = await user.save();
-//         // ids.push(savedUser._id)
-//     }
-//     for (let i = 0; i < 10; i++) {
-//         const cost = new Cost({
-//             description: "Description+" + i,
-//             category: "category" + i,
-//             sum: i,
-//             userId: '9' + i + '5' + i + '7'
-//         })
-//         const savedCost = await cost.save();
-//     }
-//     console.log("Users and Costs test were initiated")
-// }
-
 const initUsersAndCosts = async () => {
     console.log("starting initiating");
 
